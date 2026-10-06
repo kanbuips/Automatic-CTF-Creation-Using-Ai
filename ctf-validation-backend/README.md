@@ -57,3 +57,9 @@ Matching is strict on purpose: same Type, same first word of the wording (Size/P
 same datum letter, and all matching previous rows must agree. Anything else (`no_match`, `no_key`, `ambiguous`)
 is left untouched and reported; use `--map` / `overrides` to force a pairing. Wording similarity alone is not used,
 because different parts share generic wording but not tolerances.
+
+## CTF vs JT validation
+`POST /api/v1/compare {ctf_file_id, jtxml_file_id}` (upload the CTF via `/upload/ctf`, the PLMXML via `/upload/jtxml`).
+The JT wrapper holds identity only, so checks are: JT001 drawing reference = JT item id, JT002 stray PSA reference inside
+the drawing reference, JT003 part name, JT004 drawing indice vs JT revision, JT005 what the JT cannot confirm.
+Tolerances cannot be checked against the JT.

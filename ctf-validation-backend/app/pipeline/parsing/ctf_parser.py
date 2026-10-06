@@ -34,6 +34,7 @@ COLUMNS = {
     "unit": "unit",
 }
 PREFIX_COLUMNS = {"it-": "it_minus", "it+": "it_plus", "priority for the compliance": "priority"}
+INDICE_KEYS = {"drawing_ref": "drawing_indice", "part_ref": "part_indice"}
 REQUIRED = {"code", "wording", "nominal", "lsl", "usl"}
 
 FRONT_LABELS = {
@@ -99,7 +100,7 @@ def _text(v) -> str | None:
 
 
 def _read_front(ws) -> dict[str, str | None]:
-    front: dict[str, str | None] = {k: None for k in FRONT_LABELS.values()}
+    front: dict[str, str | None] = {k: None for k in (*FRONT_LABELS.values(), "drawing_indice", "part_indice")}
     for row in ws.iter_rows(min_row=1, max_row=200, max_col=30, values_only=True):
         for i, v in enumerate(row):
             key = FRONT_LABELS.get(_norm(v).rstrip(":").strip()) if isinstance(v, str) else None
@@ -108,6 +109,13 @@ def _read_front(ws) -> dict[str, str | None]:
                     if nxt not in (None, "") and not (isinstance(nxt, str) and nxt.strip().endswith(":")):
                         front[key] = str(nxt).strip()
                         break
+                if key in INDICE_KEYS:  # "Indice:" sits further right on the same row
+                    for j, lab in enumerate(row[i + 1 :], start=i + 1):
+                        if isinstance(lab, str) and _norm(lab).rstrip(":") == "indice":
+                            val = next((x for x in row[j + 1 :] if x not in (None, "")), None)
+                            if val is not None and not str(val).strip().endswith(":"):
+                                front[INDICE_KEYS[key]] = str(val).strip()
+                            break
     return front
 
 

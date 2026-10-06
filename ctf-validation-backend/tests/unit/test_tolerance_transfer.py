@@ -15,13 +15,17 @@ HEADERS = {
 }
 
 
-def make_ctf(path, rows, version="BETA_V003"):
+def make_ctf(path, rows, version="BETA_V003", drawing=None, indice=None, name="TEST PART"):
     """rows: (type, code, wording, nominal, lsl, usl). S/T are formulas like the real template."""
     wb = Workbook()
     fp = wb.active
     fp.title = "Front page"
-    fp["D30"], fp["H30"] = "Part name:", "TEST PART"
+    fp["D30"], fp["H30"] = "Part name:", name
     fp["D38"], fp["H38"], fp["L38"] = "Reference for this part:", "11111111AA", "Indice:"
+    if drawing:
+        fp["D40"], fp["H40"] = "Drawing reference:", drawing
+        if indice:
+            fp["L40"], fp["M40"] = "Indice:", indice
     fp["N141"], fp["O141"] = "Version :", f" {version}"
     ws = wb.create_sheet("CTF & PIS")
     for col, label in HEADERS.items():

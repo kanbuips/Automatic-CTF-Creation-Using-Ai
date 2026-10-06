@@ -14,7 +14,7 @@ from app.pipeline.orchestrator import PipelineError, run_pipeline
 log = logging.getLogger(__name__)
 
 ALLOWED_EXTENSIONS = {
-    "jtxml": {".jtxml", ".xml"},
+    "jtxml": {".jtxml", ".xml", ".plmxml"},
     "ctf": {".xlsx", ".xlsm", ".xls", ".csv"},
 }
 
