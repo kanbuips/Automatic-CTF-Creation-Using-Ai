@@ -1,3 +1,3 @@
-export default function Loader() {
-  return <div>Loader</div>;
+export default function Loader({ label = "Loading..." }: { label?: string }) {
+  return <p className="muted" role="status">{label}</p>;
 }

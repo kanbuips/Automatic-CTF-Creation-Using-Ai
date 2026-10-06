@@ -1,11 +1,27 @@
 import { create } from "zustand";
 
 interface AuthState {
-  token: string | null;
-  setToken: (t: string | null) => void;
+  apiKey: string;
+  setApiKey: (key: string) => void;
 }
 
+const KEY = "ctf_api_key";
+const read = () => {
+  try {
+    return localStorage.getItem(KEY) ?? "";
+  } catch {
+    return "";
+  }
+};
+
 export const useAuthStore = create<AuthState>((set) => ({
-  token: null,
-  setToken: (token) => set({ token }),
+  apiKey: read(),
+  setApiKey: (apiKey) => {
+    try {
+      localStorage.setItem(KEY, apiKey);
+    } catch {
+      /* storage unavailable */
+    }
+    set({ apiKey });
+  },
 }));

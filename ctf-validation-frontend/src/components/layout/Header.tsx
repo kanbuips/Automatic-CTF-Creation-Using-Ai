@@ -1,3 +1,3 @@
-export default function Header() {
-  return <div>Header</div>;
+export default function Header({ title }: { title: string }) {
+  return <header className="header"><h1>{title}</h1></header>;
 }
