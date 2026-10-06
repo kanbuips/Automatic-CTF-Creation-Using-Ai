@@ -44,3 +44,16 @@ python -m ml.training.train_anomaly --jtxml-dir approved_jtxml/
   aliases (see `parsing/jtxml_parser.py`). Adjust `FIELD_ALIASES` to match the real schema.
 - The CTF file is stored and linked to the job but not yet parsed or cross-checked.
 - Tables are created at startup; use Alembic (`app/db/migrations`) for schema changes in production.
+
+## Generate a CTF from a previous CTF's tolerances
+Keeps the new CTF-PIS workbook (e.g. template `BETA_V003`, read from `Front page`) exactly as is - macros, styles,
+validations - and rewrites only Nominal / Lower / Upper limit (columns P, Q, R) from a previous CTF.
+
+```
+python -m app.pipeline.generation.tolerance_transfer new.xlsm previous.xlsm out.xlsm [--map 01A02=01A05]
+# API: POST /api/v1/generate {template_file_id, source_file_id, overrides}  ->  GET /api/v1/generate/{id}/download
+```
+Matching is strict on purpose: same Type, same first word of the wording (Size/Position/Flatness...) and the
+same datum letter, and all matching previous rows must agree. Anything else (`no_match`, `no_key`, `ambiguous`)
+is left untouched and reported; use `--map` / `overrides` to force a pairing. Wording similarity alone is not used,
+because different parts share generic wording but not tolerances.
