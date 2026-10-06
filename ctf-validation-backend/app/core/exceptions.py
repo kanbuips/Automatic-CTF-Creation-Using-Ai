@@ -11,8 +11,24 @@ class AppError(Exception):
         self.message = message
 
 
+class AuthError(AppError):
+    status_code = 401
+
+
 class NotFoundError(AppError):
     status_code = 404
+
+
+class ConflictError(AppError):
+    status_code = 409
+
+
+class PayloadTooLargeError(AppError):
+    status_code = 413
+
+
+class UnprocessableError(AppError):
+    status_code = 422
 
 
 def register_exception_handlers(app: FastAPI) -> None:

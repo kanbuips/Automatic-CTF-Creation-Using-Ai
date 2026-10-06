@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JTXML>
+  <Header>
+    <ModelName>MODEL-X1</ModelName>
+    <TemplateVersion>Beta 2</TemplateVersion>
+  </Header>
+  <Characteristics>
+    <Characteristic id="C1" direction="X"><Name>Hole position</Name><Nominal>abc</Nominal><UpperTol>0.2</UpperTol><LowerTol>-0.2</LowerTol><Description>CHECK HOLE</Description></Characteristic>
+    <Characteristic id="C1" direction="Q"><Name>Slot width</Name><Nominal>8.5</Nominal><UpperTol>-0.1</UpperTol><LowerTol>0.1</LowerTol><Description>TBD</Description></Characteristic>
+    <Characteristic id="C3"><Name>Flange</Name><Nominal>25</Nominal><UpperTol>0</UpperTol><LowerTol>0</LowerTol><Description></Description></Characteristic>
+  </Characteristics>
+</JTXML>

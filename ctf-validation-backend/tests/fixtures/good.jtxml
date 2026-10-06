@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JTXML version="1.0">
+  <Header>
+    <PartName>BRACKET FRONT LH</PartName>
+    <ModelName>MODEL-X1</ModelName>
+    <TemplateVersion>Beta 3</TemplateVersion>
+  </Header>
+  <Characteristics>
+    <Characteristic id="C1" direction="X"><Name>Hole position</Name><Nominal>10.0</Nominal><UpperTol>0.2</UpperTol><LowerTol>-0.2</LowerTol><Unit>mm</Unit><Description>CHECK HOLE POSITION FROM DATUM A</Description></Characteristic>
+    <Characteristic id="C2" direction="Y"><Name>Slot width</Name><Nominal>8.5</Nominal><UpperTol>0.1</UpperTol><LowerTol>-0.1</LowerTol><Unit>mm</Unit><Description>MEASURE SLOT WIDTH AT MID DEPTH</Description></Characteristic>
+    <Characteristic id="C3" direction="Z"><Name>Flange height</Name><Nominal>25.0</Nominal><UpperTol>0.3</UpperTol><LowerTol>-0.3</LowerTol><Unit>mm</Unit><Description>CHECK FLANGE HEIGHT FROM DATUM B</Description></Characteristic>
+  </Characteristics>
+</JTXML>
